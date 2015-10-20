@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node index.js"
   },
-  "author": "Ewan Dennis <ewan.dennis@messagesystems.com>",
-  "license": "Commercial",
+  "author": "Ewan Dennis <ewan.dennis@sparkpost.com>",
+  "license": "Apache-2.0",
   "dependencies": {
     "body-parser": "^1.11.0",
     "express": "^4.11.2",
