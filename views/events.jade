@@ -24,10 +24,15 @@
               td
                 input#engchk(type='checkbox', checked)
                 label(for='engchk') Engagement events
+              td
+                input#unsubschk(type='checkbox', checked)
+                label(for='unsubschk') Unsubscribe events
             tr
               td
                 input#receptionchk(type='checkbox', checked, data-mini='true')
                 label(for='receptionchk') receptions
+                input#rejectionchk(type='checkbox', checked, data-mini='true')
+                label(for='rejectionchk') rejections
                 input#delaychk(type='checkbox', checked, data-mini='true')
                 label(for='delaychk') delays
                 input#deliverychk(type='checkbox', checked, data-mini='true')
@@ -36,6 +41,8 @@
                 label(for='inbandchk') inband bounces
                 input#bouncechk(type='checkbox', checked, data-mini='true')
                 label(for='bouncechk') OOB bounces
+                input#spamchk(type='checkbox', checked, data-mini='true')
+                label(for='spamchk') Spam complaints
               td
                 input#genfailchk(type='checkbox', checked, data-mini='true')
                 label(for='genfailchk') gen failures
@@ -46,5 +53,10 @@
                 label(for='openchk') opens
                 input#clickchk(type='checkbox', checked, data-mini='true')
                 label(for='clickchk') clicks
+              td
+                input#listunsubschk(type='checkbox', checked, data-mini='true')
+                label(for='listunsubschk') list unsubscribes
+                input#linkunsubschk(type='checkbox', checked, data-mini='true')
+                label(for='linkunsubschk') link unsubscribes
 
         ul#eventlst(data-role='listview')

@@ -96,25 +96,110 @@ function populateEndpointsList() {
 
 var socket = null;
 
+var eventFilterCheckGroups = {
+  '#msgchk': {
+    '#receptionchk': 'injection',
+    '#rejectionchk': 'policy_rejection',
+    '#delaychk': 'delay',
+    '#deliverychk': 'delivery',
+    '#inbandchk': 'bounce',
+    '#bouncechk': 'out_of_band',
+    '#spamchk': 'spam_complaint'
+  },
+  '#genchk': {
+    '#genfailchk': 'generation_failure',
+    '#genrejectchk': 'generation_rejection'
+  },
+  '#engchk': {
+    '#openchk': 'open',
+    '#clickchk': 'click'
+  },
+  '#unsubschk': {
+    '#listunsubschk': 'list_unsubscribe',
+    '#linkunsubschk': 'link_unsubscribe'
+  }
+};
+
+var allEventTypes = Array.prototype.concat.apply([], 
+  Object.keys(eventFilterCheckGroups).map(function(groupName) {
+    var group = eventFilterCheckGroups[groupName];
+    return Object.keys(group).map(function(chkboxname) { return group[chkboxname]; });
+  }));
+
 $(document).on('pagecreate', '#events', function() {
-  // Tie the 'Message events' checkbox to all sub checkboxes
-  $('#msgchk').change(function () {
-    checkem('#msgchk', ['#receptionchk', '#delaychk', '#deliverychk',
-      '#inbandchk', '#bouncechk']);
-  });
 
-  // TODO: Tie the 'Generation events' checkbox to all sub checkboxes
-  $('#genchk').change(function () {
-   checkem('#genchk', ['#genfailchk', '#genrejectchk']);
-  });
+  // Show everything to start with
+  var enabledTypes = allEventTypes;
 
-  // Tie the 'Engagement events' checkbox to all sub checkboxes
-  $('#engchk').change(function () {
-    checkem('#engchk', ['#openchk', '#clickchk']);
+  function setEnabledTypes(evttypes, onoff) {
+    if (onoff) {
+      var missingTypes = evttypes.filter(function(evttype) {
+        return enabledTypes.indexOf(evttype) < 0;
+      });
+      enabledTypes = enabledTypes.concat(missingTypes);
+    } else {
+      enabledTypes = enabledTypes.filter(function(evttype) {
+        return evttypes.indexOf(evttype) < 0;
+      });
+    }
+    filterEventsList(enabledTypes);
+  }
+
+  function enableType(evttype, onoff) {
+    if (onoff) {
+      if (enabledTypes.indexOf(evttype) < 0) {
+        enabledTypes.push(evttype);
+      }
+    } else {
+      enabledTypes = enabledTypes.filter(function(elt) {
+        return elt !== evttype;
+      });
+    }
+    filterEventsList(enabledTypes);
+  }
+
+  function addCheckboxChangeHandler(chksel, evttype) {
+    $(chksel).change(function() {
+      var checked = $(chksel).prop('checked');
+      enableType(evttype, checked);
+    });
+  }
+
+  // Tie the event group checkboxes to their sub checkboxes
+  // Update event filters on checkbox change events
+  Object.keys(eventFilterCheckGroups).forEach(function(groupCheckboxName) {
+    var checkboxGroup = eventFilterCheckGroups[groupCheckboxName];
+    var groupCheckboxes = Object.keys(checkboxGroup);
+
+    $(groupCheckboxName).change(function() {
+      checkem(groupCheckboxName, groupCheckboxes);
+      var checked = $(groupCheckboxName).prop('checked');
+      var groupTypes = groupCheckboxes.map(function(chkboxName) { return checkboxGroup[chkboxName]; });
+      setEnabledTypes(groupTypes, checked);
+    });
+
+    groupCheckboxes.forEach(function(chkboxName) {
+      addCheckboxChangeHandler(chkboxName, checkboxGroup[chkboxName]);
+    });
   });
 
   $(this).bind('pagebeforeshow', onShowEvents);
 });
+
+function filterEventsList(enabledTypes) {
+  $('#eventlst LI').each(function(idx) {
+    var elt = $(this)
+      , eventtype = elt.data('eventtype');
+
+    if (enabledTypes.indexOf(eventtype) >= 0) {
+      elt.removeClass('ui-screen-hidden');
+    } else {
+      elt.addClass('ui-screen-hidden');
+    }
+ });
+
+  $('#eventlst').listview('refresh');
+}
 
 function onShowEvents() {
   var endpointName = localStorage.getItem('endpoint.name');
@@ -148,30 +233,24 @@ function checkem(parent, lst) {
 //
 
 function populateEventsList(events) {
-	// TODO: load events list
+	var evlst = $('#eventlst')
+    , unpackedEvents = events.map(function(evt) {
+      return evt.msys[Object.keys(evt.msys)[0]];
+    })
+    , goodEvents = unpackedEvents.filter(function(evt) {
+      return allEventTypes.indexOf(evt.type) >= 0;
+    });
 
-	var evlst = $('#eventlst');
-	evlst.empty();
+	goodEvents.forEach(function(evt) {
+		evt.timestamp = moment.unix(evt.timestamp).fromNow();
 
-	events.forEach(function(evt) {
-		var rec = evt.msys;
-		var typekeys = ['message_event', 'gen_event', 'track_event'];
-		var type = typekeys.filter(function (key) { return key in rec; });
+    if (eventformatters.hasOwnProperty(evt.type)) {
+  		var li = $('<li><span class="ui-li-desc"><span class="evttype">' + evt.type + ' </span><span class="eventdesc">' +
+  			eventformatters[evt.type](evt) + '</span></span><span class="ui-li-count">' + evt.timestamp + '</span></li>');
 
-		if (type.length === 0) {
-			console.log('Error: unexpected event structure: ' + rec);
-			return;
-		}
+      li.data('eventtype', evt.type);
 
-		rec = rec[type[0]];
-
-		// rec.timestamp = moment.unix(rec.timestamp).format('YYYY-MM-DD HH:mm:ss');
-		rec.timestamp = moment.unix(rec.timestamp).fromNow();
-
-    if (eventformatters.hasOwnProperty(rec.type)) {
-  		var li = '<li><span class="ui-li-desc"><span class="evttype">' + rec.type + ' </span><span class="eventdesc">' +
-  			eventformatters[rec.type](rec) + '</span></span><span class="ui-li-count">' + rec.timestamp + '</span></li>';
-  		evlst.append(li);
+  		evlst.prepend(li);
     }
 	});
 
@@ -179,6 +258,7 @@ function populateEventsList(events) {
 }
 
 // ----------------------------------------------------------------------------
+// Events page event rendering
 
 // evt.fld -> <span class="fld">evt.fld</span>
 function spanclass(evt, fld) {
@@ -186,13 +266,13 @@ function spanclass(evt, fld) {
 }
 
 var eventformatters = {
-	// injection: function(e) {
-	// 	return 'Received <span class="subject">&quot;' + e.subject + '&quot;</span> addressed to ' + e.rcpt_to;
-	// },
+	injection: function(e) {
+		return 'Received ' + spanclass(e, 'subject') + ' addressed to ' + e.rcpt_to;
+	},
 
-	// delay: function(e) {
-	// 	return 'Delays delays...';
-	// },
+	delay: function(e) {
+		return 'Delays delays...';
+	},
 
 	delivery: function(e) {
 		return spanclass(e, 'subject') + ' was sent to ' + spanclass(e, 'rcpt_to');
@@ -202,9 +282,9 @@ var eventformatters = {
 		return spanclass(e, 'rcpt_to') + ' did not receive ' + spanclass(e, 'subject') + '.  SparkPost says ' + spanclass(e, 'reason');
 	},
 
-	// out_of_band: function(e) {
- //    return spanclass(e, 'rcpt_to') + ' did not receive message with ID ' + e.message_id + '</span> due to ' + spanclass(e, 'reason');
-	// },
+	out_of_band: function(e) {
+    return spanclass(e, 'rcpt_to') + ' did not receive message with ID ' + e.message_id + '</span> due to ' + spanclass(e, 'reason');
+	},
 
   spam_complaint: function(e) {
     return spanclass(e, 'rcpt_to') + ' complained about ' + spanclass(e, 'subject') + ' according to ' + e.report_by;
@@ -229,15 +309,13 @@ var eventformatters = {
 		return spanclass(e, 'rcpt_to') + ' clicked on <a href="' + e.target_link_url + '">' + e.target_link_url + '</a> on a <span class="device">' + ua.os.name + '</span> device while visiting <span class="location">' + e.geo_ip.city + '</span>';
 	},
 
-	// generation_failure: function(e) {
-	// 	return '<span class="ui-li-desc">' + spanclass(e, 'reason') + '</span>' +
-	// 		'<span class="ui-li-count">' + e.timestamp + '</span>';
-	// },
+	generation_failure: function(e) {
+		return spanclass(e, 'reason');
+	},
 
- //  generation_rejection: function(e) {
- //    return '<span class="ui-li-desc">' + spanclass(e, 'reason') + '</span>' +
- //      '<span class="ui-li-count">' + e.timestamp + '</span>';
- //  },
+  generation_rejection: function(e) {
+    return spanclass(e, 'reason');
+  },
 
   list_unsubscribe: function(e) {
     return spanclass(e, 'rcpt_to') + ' unsubscribed from your mail';
