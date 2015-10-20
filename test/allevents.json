@@ -1,0 +1,388 @@
+[
+  {
+    "msys": {
+      "message_event": {
+        "msg_from": "sender@example.com",
+        "template_version": "1",
+        "customer_id": "1",
+        "timestamp": 1427736822,
+        "rcpt_meta": {
+          "customKey": "customValue"
+        },
+        "routing_domain": "example.com",
+        "campaign_id": "Example Campaign Name",
+        "message_id": "0e0d94b7-9085-4e3c-ab30-e3f2cd9c273e",
+        "rcpt_to": "recipient@example.com",
+        "rcpt_type": "cc",
+        "msg_size": "1337",
+        "transmission_id": "65832150921904138",
+        "type": "injection",
+        "template_id": "templ-1234",
+        "rcpt_tags": [
+          "male",
+          "US"
+        ],
+        "subject": "Summer deals are here!"
+      }
+    }
+  },
+  {
+    "msys": {
+      "message_event": {
+        "device_token": "45c19189783f867973f6e6a5cca60061ffe4fa77c547150563a1192fa9847f8a",
+        "msg_from": "sender@example.com",
+        "routing_domain": "example.com",
+        "num_retries": "2",
+        "customer_id": "1",
+        "timestamp": 1427736822,
+        "rcpt_meta": {
+          "customKey": "customValue"
+        },
+        "template_version": "1",
+        "campaign_id": "Example Campaign Name",
+        "ip_address": "127.0.0.1",
+        "rcpt_to": "recipient@example.com",
+        "message_id": "0e0d94b7-9085-4e3c-ab30-e3f2cd9c273e",
+        "rcpt_type": "cc",
+        "delv_method": "esmtp",
+        "msg_size": "1337",
+        "queue_time": "12",
+        "transmission_id": "65832150921904138",
+        "type": "delivery",
+        "template_id": "templ-1234",
+        "rcpt_tags": [
+          "male",
+          "US"
+        ],
+        "subject": "Summer deals are here!"
+      }
+    }
+  },
+  {
+    "msys": {
+      "message_event": {
+        "device_token": "45c19189783f867973f6e6a5cca60061ffe4fa77c547150563a1192fa9847f8a",
+        "num_retries": "2",
+        "bounce_class": "1",
+        "routing_domain": "example.com",
+        "campaign_id": "Example Campaign Name",
+        "subject": "Summer deals are here!",
+        "rcpt_meta": {
+          "customKey": "customValue"
+        },
+        "queue_time": "12",
+        "transmission_id": "65832150921904138",
+        "type": "delay",
+        "message_id": "0e0d94b7-9085-4e3c-ab30-e3f2cd9c273e",
+        "raw_reason": "MAIL REFUSED - IP (17.99.99.99) is in black list",
+        "msg_from": "sender@example.com",
+        "timestamp": 1427736822,
+        "rcpt_to": "recipient@example.com",
+        "reason": "MAIL REFUSED - IP (a.b.c.d) is in black list",
+        "msg_size": "1337",
+        "ip_address": "127.0.0.1",
+        "customer_id": "1",
+        "rcpt_tags": [
+          "male",
+          "US"
+        ],
+        "template_version": "1",
+        "rcpt_type": "cc",
+        "error_code": "554",
+        "template_id": "templ-1234",
+        "delv_method": "esmtp"
+      }
+    }
+  },
+  {
+    "msys": {
+      "message_event": {
+        "device_token": "45c19189783f867973f6e6a5cca60061ffe4fa77c547150563a1192fa9847f8a",
+        "num_retries": "2",
+        "bounce_class": "1",
+        "routing_domain": "example.com",
+        "campaign_id": "Example Campaign Name",
+        "subject": "Summer deals are here!",
+        "rcpt_meta": {
+          "customKey": "customValue"
+        },
+        "transmission_id": "65832150921904138",
+        "type": "bounce",
+        "message_id": "0e0d94b7-9085-4e3c-ab30-e3f2cd9c273e",
+        "raw_reason": "MAIL REFUSED - IP (17.99.99.99) is in black list",
+        "msg_from": "sender@example.com",
+        "timestamp": 1427736822,
+        "rcpt_to": "recipient@example.com",
+        "reason": "MAIL REFUSED - IP (a.b.c.d) is in black list",
+        "msg_size": "1337",
+        "ip_address": "127.0.0.1",
+        "customer_id": "1",
+        "rcpt_tags": [
+          "male",
+          "US"
+        ],
+        "template_version": "1",
+        "rcpt_type": "cc",
+        "error_code": "554",
+        "template_id": "templ-1234",
+        "delv_method": "esmtp"
+      }
+    }
+  },
+  {
+    "msys": {
+      "message_event": {
+        "device_token": "45c19189783f867973f6e6a5cca60061ffe4fa77c547150563a1192fa9847f8a",
+        "msg_from": "sender@example.com",
+        "routing_domain": "example.com",
+        "type": "out_of_band",
+        "bounce_class": "1",
+        "template_version": "1",
+        "campaign_id": "Example Campaign Name",
+        "message_id": "0e0d94b7-9085-4e3c-ab30-e3f2cd9c273e",
+        "rcpt_to": "recipient@example.com",
+        "reason": "MAIL REFUSED - IP (a.b.c.d) is in black list",
+        "timestamp": 1427736822,
+        "customer_id": "1",
+        "error_code": "554",
+        "template_id": "templ-1234",
+        "delv_method": "esmtp",
+        "raw_reason": "MAIL REFUSED - IP (17.99.99.99) is in black list"
+      }
+    }
+  },
+  {
+    "msys": {
+      "message_event": {
+        "rcpt_type": "cc",
+        "customer_id": "1",
+        "timestamp": 1427736822,
+        "rcpt_meta": {
+          "customKey": "customValue"
+        },
+        "template_version": "1",
+        "campaign_id": "Example Campaign Name",
+        "fbtype": "abuse",
+        "friendly_from": "sender@example.com",
+        "rcpt_to": "recipient@example.com",
+        "message_id": "0e0d94b7-9085-4e3c-ab30-e3f2cd9c273e",
+        "report_by": "server.email.com",
+        "delv_method": "esmtp",
+        "report_to": "abuse.example.com",
+        "user_str": "Additional Example Information",
+        "transmission_id": "65832150921904138",
+        "type": "spam_complaint",
+        "template_id": "templ-1234",
+        "rcpt_tags": [
+          "male",
+          "US"
+        ],
+        "subject": "Summer deals are here!"
+      }
+    }
+  },
+  {
+    "msys": {
+      "message_event": {
+        "msg_from": "sender@example.com",
+        "customer_id": "1",
+        "remote_addr": "127.0.0.1",
+        "timestamp": 1427736822,
+        "rcpt_meta": {
+          "customKey": "customValue"
+        },
+        "template_version": "1",
+        "campaign_id": "Example Campaign Name",
+        "message_id": "0e0d94b7-9085-4e3c-ab30-e3f2cd9c273e",
+        "rcpt_to": "recipient@example.com",
+        "error_code": "554",
+        "reason": "MAIL REFUSED - IP (a.b.c.d) is in black list",
+        "rcpt_type": "cc",
+        "transmission_id": "65832150921904138",
+        "type": "policy_rejection",
+        "template_id": "templ-1234",
+        "rcpt_tags": [
+          "male",
+          "US"
+        ],
+        "raw_reason": "MAIL REFUSED - IP (17.99.99.99) is in black list"
+      }
+    }
+  },
+  {
+    "msys": {
+      "track_event": {
+        "delv_method": "esmtp",
+        "geo_ip": {
+          "latitude": "39.1749",
+          "country": "US",
+          "region": "MD",
+          "longitude": "-76.8375",
+          "city": "Columbia"
+        },
+        "customer_id": "1",
+        "timestamp": 1427736822,
+        "rcpt_meta": {
+          "customKey": "customValue"
+        },
+        "template_version": "1",
+        "campaign_id": "Example Campaign Name",
+        "ip_address": "127.0.0.1",
+        "rcpt_to": "recipient@example.com",
+        "message_id": "0e0d94b7-9085-4e3c-ab30-e3f2cd9c273e",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36",
+        "transmission_id": "65832150921904138",
+        "type": "open",
+        "template_id": "templ-1234",
+        "rcpt_tags": [
+          "male",
+          "US"
+        ],
+        "rcpt_type": "cc"
+      }
+    }
+  },
+  {
+    "msys": {
+      "track_event": {
+        "delv_method": "esmtp",
+        "geo_ip": {
+          "latitude": "39.1749",
+          "country": "US",
+          "region": "MD",
+          "longitude": "-76.8375",
+          "city": "Columbia"
+        },
+        "customer_id": "1",
+        "timestamp": 1427736822,
+        "rcpt_meta": {
+          "customKey": "customValue"
+        },
+        "template_version": "1",
+        "campaign_id": "Example Campaign Name",
+        "ip_address": "127.0.0.1",
+        "rcpt_to": "recipient@example.com",
+        "message_id": "0e0d94b7-9085-4e3c-ab30-e3f2cd9c273e",
+        "target_link_name": "Example Link Name",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36",
+        "target_link_url": "http://example.com",
+        "transmission_id": "65832150921904138",
+        "type": "click",
+        "template_id": "templ-1234",
+        "rcpt_tags": [
+          "male",
+          "US"
+        ],
+        "rcpt_type": "cc"
+      }
+    }
+  },
+  {
+    "msys": {
+      "gen_event": {
+        "template_version": "1",
+        "rcpt_subs": {
+          "country": "US",
+          "gender": "Female"
+        },
+        "customer_id": "1",
+        "timestamp": 1427736822,
+        "rcpt_meta": {
+          "customKey": "customValue"
+        },
+        "routing_domain": "example.com",
+        "campaign_id": "Example Campaign Name",
+        "rcpt_to": "recipient@example.com",
+        "error_code": "554",
+        "reason": "MAIL REFUSED - IP (a.b.c.d) is in black list",
+        "transmission_id": "65832150921904138",
+        "type": "generation_failure",
+        "template_id": "templ-1234",
+        "rcpt_tags": [
+          "male",
+          "US"
+        ],
+        "raw_reason": "MAIL REFUSED - IP (17.99.99.99) is in black list"
+      }
+    }
+  },
+  {
+    "msys": {
+      "gen_event": {
+        "template_version": "1",
+        "rcpt_subs": {
+          "country": "US",
+          "gender": "Female"
+        },
+        "customer_id": "1",
+        "timestamp": 1427736822,
+        "rcpt_meta": {
+          "customKey": "customValue"
+        },
+        "routing_domain": "example.com",
+        "campaign_id": "Example Campaign Name",
+        "rcpt_to": "recipient@example.com",
+        "error_code": "554",
+        "reason": "MAIL REFUSED - IP (a.b.c.d) is in black list",
+        "raw_reason": "MAIL REFUSED - IP (17.99.99.99) is in black list",
+        "transmission_id": "65832150921904138",
+        "type": "generation_rejection",
+        "template_id": "templ-1234",
+        "rcpt_tags": [
+          "male",
+          "US"
+        ],
+        "subject": "Summer deals are here!"
+      }
+    }
+  },
+  {
+    "msys": {
+      "unsubscribe_event": {
+        "mailfrom": "recipient@example.com",
+        "customer_id": "1",
+        "timestamp": 1427736822,
+        "rcpt_meta": {
+          "customKey": "customValue"
+        },
+        "template_version": "1",
+        "campaign_id": "Example Campaign Name",
+        "message_id": "0e0d94b7-9085-4e3c-ab30-e3f2cd9c273e",
+        "rcpt_to": "recipient@example.com",
+        "rcpt_type": "cc",
+        "transmission_id": "65832150921904138",
+        "type": "list_unsubscribe",
+        "template_id": "templ-1234",
+        "rcpt_tags": [
+          "male",
+          "US"
+        ]
+      }
+    }
+  },
+  {
+    "msys": {
+      "unsubscribe_event": {
+        "mailfrom": "recipient@example.com",
+        "customer_id": "1",
+        "timestamp": 1427736822,
+        "rcpt_meta": {
+          "customKey": "customValue"
+        },
+        "template_version": "1",
+        "campaign_id": "Example Campaign Name",
+        "message_id": "0e0d94b7-9085-4e3c-ab30-e3f2cd9c273e",
+        "rcpt_to": "recipient@example.com",
+        "rcpt_type": "cc",
+        "transmission_id": "65832150921904138",
+        "type": "link_unsubscribe",
+        "template_id": "templ-1234",
+        "rcpt_tags": [
+          "male",
+          "US"
+        ],
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36"
+      }
+    }
+  }
+]

@@ -12,10 +12,47 @@ label {
 
 .evttype {
 	font-weight: bold;
-	display: inline-block;
-	text-align: right;
 	margin-right: 5px;
 	width: 5em;
+	display: none;
+}
+
+.eventdesc {
+	white-space: normal;
+	width: 85%;
+	display: block;
+	color: rgb(120, 120, 120);
+}
+
+.eventdesc a {
+	font-weight: normal;
+}
+
+.subject {
+	font-style: italic;
+	color: rgb(40, 200, 40);
+}
+
+.rcpt_to {
+	color: rgb(150, 20, 80);
+}
+
+.campaign_id {
+	color: rgb(100, 100, 100);
+	font-style: italic;
+}
+
+.reason {
+	font-size: 0.7em;
+	color: rgb(200, 20, 20);
+}
+
+.device {
+	color: rgb(40, 40, 200);
+}
+
+.location {
+	color: rgb(100, 100, 200);
 }
 
 .eventlistblock {

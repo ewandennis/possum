@@ -1,35 +1,5 @@
 // ----------------------------------------------------------------------------
 //
-// Credentials page: #creds
-//
-
-$(document).on('pagecreate', '#creds', function() {
-	// TODO: Check for pre-existing session and navigate
-	// straight to #endpoints
-
-  // Register validation for the credentials form
-	$('#credsfrm').validate({
-		messages: {
-			email: {
-				required: 'Please enter your email address',
-				email: 'Email addresses usually look like this: name@domain.com'
-			}
-		},
-		errorPlacement: function (err, elt) {
-			err.appendTo(elt.parent().prev());
-		},
-		submitHandler: function (frm) {
-      // On submit, navigate to the 'next' page: #endpoints
-			// TODO: notify backend of user access
-			// TODO: store session?
-			location.hash = 'endpoints';
-			return false;
-		}
-	});
-});
-
-// ----------------------------------------------------------------------------
-//
 // Endpoints page: #endpoints
 //
 
@@ -198,59 +168,84 @@ function populateEventsList(events) {
 		// rec.timestamp = moment.unix(rec.timestamp).format('YYYY-MM-DD HH:mm:ss');
 		rec.timestamp = moment.unix(rec.timestamp).fromNow();
 
-		var li = '<li><span class="evttype">' + rec.type + ' </span>' +
-			eventformatters[rec.type](rec) + '</li>';
-		evlst.append(li);
+    if (eventformatters.hasOwnProperty(rec.type)) {
+  		var li = '<li><span class="ui-li-desc"><span class="evttype">' + rec.type + ' </span><span class="eventdesc">' +
+  			eventformatters[rec.type](rec) + '</span></span><span class="ui-li-count">' + rec.timestamp + '</span></li>';
+  		evlst.append(li);
+    }
 	});
 
 	evlst.listview('refresh');
 }
 
-var eventformatters = {
-	reception: function(e) {
-		return '<span class="ui-li-desc">for ' + e.rcpt_to + '</span>' +
-			'<span class="ui-li-count">' + e.timestamp + '</span>';
-	},
+// ----------------------------------------------------------------------------
 
-	delay: function(e) {
-		return '';
-	},
+// evt.fld -> <span class="fld">evt.fld</span>
+function spanclass(evt, fld) {
+  return '<span class="' + fld + '">' + evt[fld] + '</span>';
+}
+
+var eventformatters = {
+	// injection: function(e) {
+	// 	return 'Received <span class="subject">&quot;' + e.subject + '&quot;</span> addressed to ' + e.rcpt_to;
+	// },
+
+	// delay: function(e) {
+	// 	return 'Delays delays...';
+	// },
 
 	delivery: function(e) {
-		return '<span class="ui-li-desc">to ' + e.routing_domain + '</span>' +
-			'<span class="ui-li-count">' + e.timestamp + '</span>';
-	},
-
-	inband: function(e) {
-		return '<span class="ul-li-desc">from ' + e.rcpt_to + '</span>' +
-			'<span class="ui-li-count">' + e.timestamp + '</span>';
+		return spanclass(e, 'subject') + ' was sent to ' + spanclass(e, 'rcpt_to');
 	},
 
 	bounce: function(e) {
-		return '';
+		return spanclass(e, 'rcpt_to') + ' did not receive ' + spanclass(e, 'subject') + '.  SparkPost says ' + spanclass(e, 'reason');
 	},
+
+	// out_of_band: function(e) {
+ //    return spanclass(e, 'rcpt_to') + ' did not receive message with ID ' + e.message_id + '</span> due to ' + spanclass(e, 'reason');
+	// },
+
+  spam_complaint: function(e) {
+    return spanclass(e, 'rcpt_to') + ' complained about ' + spanclass(e, 'subject') + ' according to ' + e.report_by;
+  },
+
+  policy_rejection: function(e) {
+    return 'SparkPost rejected a message from ' + spanclass(e, 'campaign_id') + '. SparkPost says ' + spanclass(e, 'reason');
+  },
 
 	open: function(e) {
 		var parser = new UAParser();
 		parser.setUA(e.user_agent);
 		var ua = parser.getResult();
 
-		return '<span class="ui-li-desc">' + ua.os.name + ' - ' + ua.device.model + '</span>' +
-			'<span class="ui-li-count">' + e.timestamp + '</span>';
+		return spanclass(e, 'rcpt_to') + ' opened an email on a <span class="device">' + ua.os.name + '</span> device while visiting <span class="location">' + e.geo_ip.city + '</span>';
 	},
 
 	click: function(e) {
-		return '<span class="ui-li-desc">' + e.target_link_url + '</span>' +
-			'<span class="ui-li-count">' + e.timestamp + '</span>';
+    var parser = new UAParser();
+    parser.setUA(e.user_agent);
+    var ua = parser.getResult();
+		return spanclass(e, 'rcpt_to') + ' clicked on <a href="' + e.target_link_url + '">' + e.target_link_url + '</a> on a <span class="device">' + ua.os.name + '</span> device while visiting <span class="location">' + e.geo_ip.city + '</span>';
 	},
 
-	// gen fail
-	fail: function(e) {
-		return '<span class="ui-li-desc">' + e.reason + '</span>' +
-			'<span class="ui-li-count">' + e.timestamp + '</span>';
-	}
-	// TODO: missing event types: policy rejection, spam complaint,
-	// generation rejection
+	// generation_failure: function(e) {
+	// 	return '<span class="ui-li-desc">' + spanclass(e, 'reason') + '</span>' +
+	// 		'<span class="ui-li-count">' + e.timestamp + '</span>';
+	// },
+
+ //  generation_rejection: function(e) {
+ //    return '<span class="ui-li-desc">' + spanclass(e, 'reason') + '</span>' +
+ //      '<span class="ui-li-count">' + e.timestamp + '</span>';
+ //  },
+
+  list_unsubscribe: function(e) {
+    return spanclass(e, 'rcpt_to') + ' unsubscribed from your mail';
+  },
+
+  link_unsubscribe: function(e) {
+    return spanclass(e, 'rcpt_to') + ' unsubscribed from your mail';
+  }
 };
 
 // ----------------------------------------------------------------------------
