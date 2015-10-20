@@ -1,0 +1,18 @@
+{
+  "name": "possum",
+  "version": "1.0.0",
+  "description": "Webhook JSON event sink",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.js"
+  },
+  "author": "Ewan Dennis <ewan.dennis@messagesystems.com>",
+  "license": "Commercial",
+  "dependencies": {
+    "body-parser": "^1.11.0",
+    "express": "^4.11.2",
+    "jade": "^1.9.1",
+    "socket.io": "^1.3.4"
+  }
+}

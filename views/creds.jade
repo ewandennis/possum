@@ -1,0 +1,15 @@
+#creds(data-role='page')
+	div(data-role='header')
+		h3 Enter Your Email Address
+	div(data-role='content')
+		p
+			| This site is intended for Message Systems staff only.
+			| No password is required here but entering the same email the next time you
+			| visit will retrieve your settings. Note: your actions here and your IP address
+			| will be logged.
+		div()
+		div(data-role='main').ui-content
+			form#credsfrm
+				label(for='email') Email:
+				input#email(type='email', required, minlength=6)
+				input#enterbtn(type='submit', data-inline='true', value='Enter')

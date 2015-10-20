@@ -1,0 +1,50 @@
+#events(data-role='page')
+  div(data-role='header')
+    a(href='#endpoints', class='ui-btn') Back
+    h3 Endpoint Events:
+      span(id="endpointnametitle")
+  div(data-role='content')
+    p
+      | This page shows the recent events received by this endpoint with the most recent
+      | ones at the top.  The last 100 events are available and this list will update
+      | as new events are received.
+    p Endpoint URL:
+      span(id="endpointurl")
+    div(data-role='main').ui-content
+      .eventlistblock
+        .thefilters
+          table#eventfilters
+            tr
+              td
+                input#msgchk(type='checkbox', checked)
+                label(for='msgchk') Message events
+              td
+                input#genchk(type='checkbox', checked)
+                label(for='genchk') Generation events
+              td
+                input#engchk(type='checkbox', checked)
+                label(for='engchk') Engagement events
+            tr
+              td
+                input#receptionchk(type='checkbox', checked, data-mini='true')
+                label(for='receptionchk') receptions
+                input#delaychk(type='checkbox', checked, data-mini='true')
+                label(for='delaychk') delays
+                input#deliverychk(type='checkbox', checked, data-mini='true')
+                label(for='deliverychk') deliveries
+                input#inbandchk(type='checkbox', checked, data-mini='true')
+                label(for='inbandchk') inband bounces
+                input#bouncechk(type='checkbox', checked, data-mini='true')
+                label(for='bouncechk') OOB bounces
+              td
+                input#genfailchk(type='checkbox', checked, data-mini='true')
+                label(for='genfailchk') gen failures
+                input#genrejectchk(type='checkbox', checked, data-mini='true')
+                label(for='genrejectchk') gen rejections
+              td
+                input#openchk(type='checkbox', checked, data-mini='true')
+                label(for='openchk') opens
+                input#clickchk(type='checkbox', checked, data-mini='true')
+                label(for='clickchk') clicks
+
+        ul#eventlst(data-role='listview')

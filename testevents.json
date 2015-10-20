@@ -1,0 +1,163 @@
+[
+  {
+    "msys": {
+      "message_event": {
+        "rcpt_to": "ewan.dennis+msdemo@gmail.com",
+        "conn_name": "00/00-00000-00000000",
+        "node_name": "ip-10-80-147-7.eu-west-1.compute.internal",
+        "timestamp": "1410270079",
+        "pathway": "default",
+        "recv_method": "rest",
+        "msg_batchname": "81/00-21918-F730F045",
+        "rcpt_meta": {
+          "sms": "447810396927",
+          "fname": "Ewan"
+        },
+        "msg_spoolname": "91/00-21918-F730F045",
+        "type": "reception",
+        "rcpt_tags": [],
+        "binding_group": "default",
+        "customer_id": "default",
+        "message_id": "00007f030f549e551900",
+        "msg_size": "3128",
+        "binding": "default",
+        "org_id": "1",
+        "conn_stage": "22",
+        "msg_from": "ewan.dennis@messagesystems.com",
+        "pathway_group": "default",
+        "transmission_id": "11830181660459019",
+        "routing_domain": "gmail.com",
+        "campaign_id": "EmailAlerts"
+      }
+    }
+  },
+  {
+    "msys": {
+      "message_event": {
+        "rcpt_meta": {
+          "sms": "447810396927",
+          "fname": "Ewan"
+        },
+        "timestamp": "1410270079",
+        "msg_from": "ewan.dennis@messagesystems.com",
+        "binding": "default",
+        "rcpt_tags": [],
+        "reason": "550 5.2.1 The email account that you tried to reach is disabled",
+        "bounce_class": "10",
+        "org_id": "1",
+        "node_name": "ip-10-80-147-7.eu-west-1.compute.internal",
+        "binding_group": "default",
+        "msg_spoolname": "91/00-21918-F730F045",
+        "customer_id": "default",
+        "error_code": "550",
+        "msg_batchname": "81/00-21918-F730F045",
+        "ip_address": "10.48.163.71",
+        "conn_name": "00/00-00000-00000000",
+        "message_id": "00007f030f549e551900",
+        "type": "inband",
+        "campaign_id": "EmailAlerts",
+        "conn_stage": "9",
+        "transmission_id": "11830181660459019",
+        "recv_method": "rest",
+        "rcpt_to": "ewan.dennis+msdemo@gmail.com",
+        "routing_domain": "gmail.com",
+        "msg_size": "3128"
+      }
+    }
+  },
+  {
+    "msys": {
+      "message_event": {
+        "timestamp": "1410270080",
+        "binding_group": "default",
+        "transmission_id": "11830181660459020",
+        "rcpt_to": "ewan.dennis@gmail.com",
+        "pathway": "default",
+        "type": "reception",
+        "conn_stage": "22",
+        "msg_spoolname": "B1/00-21918-0830F045",
+        "conn_name": "00/00-00000-00000000",
+        "msg_from": "ewan.dennis@messagesystems.com",
+        "pathway_group": "default",
+        "routing_domain": "gmail.com",
+        "rcpt_tags": [],
+        "msg_size": "3113",
+        "campaign_id": "EmailAlerts",
+        "org_id": "1",
+        "rcpt_meta": {
+          "sms": "",
+          "fname": "Ewan"
+        },
+        "message_id": "000080030f549e551b00",
+        "customer_id": "default",
+        "msg_batchname": "A1/00-21918-0830F045",
+        "recv_method": "rest",
+        "node_name": "ip-10-80-147-7.eu-west-1.compute.internal",
+        "binding": "default"
+      }
+    }
+  },
+  {
+    "msys": {
+      "message_event": {
+        "ip_address": "10.48.163.71",
+        "conn_stage": "1",
+        "conn_name": "00/00-00000-00000000",
+        "binding": "default",
+        "queue_time": "10",
+        "rcpt_tags": [],
+        "transmission_id": "11830181660459020",
+        "binding_group": "default",
+        "msg_spoolname": "B1/00-21918-0830F045",
+        "type": "delivery",
+        "msg_size": "3113",
+        "routing_domain": "gmail.com",
+        "msg_batchname": "A1/00-21918-0830F045",
+        "rcpt_meta": {
+          "sms": "",
+          "fname": "Ewan"
+        },
+        "recv_method": "rest",
+        "node_name": "ip-10-80-147-7.eu-west-1.compute.internal",
+        "org_id": "1",
+        "delv_method": "esmtp",
+        "num_retries": "0",
+        "campaign_id": "EmailAlerts",
+        "customer_id": "default",
+        "message_id": "000080030f549e551b00",
+        "timestamp": "1410270080"
+      }
+    }
+  },
+  {
+    "msys": {
+      "message_event": {
+        "pathway": "default",
+        "msg_batchname": "D1/00-21918-0830F045",
+        "node_name": "ip-10-80-147-7.eu-west-1.compute.internal",
+        "recv_method": "rest",
+        "type": "reception",
+        "customer_id": "default",
+        "binding": "default",
+        "org_id": "1",
+        "rcpt_to": "447810396927@smpp.mblox.com",
+        "rcpt_meta": {
+          "fname": "Ewan"
+        },
+        "transmission_id": "11830181660459021",
+        "campaign_id": "EmailAlerts",
+        "routing_domain": "smpp.mblox.com",
+        "conn_stage": "22",
+        "msg_from": "ewan.dennis@messagesystems.com",
+        "msg_spoolname": "E1/00-21918-0830F045",
+        "binding_group": "default",
+        "pathway_group": "default",
+        "message_id": "000080030f549e551e00",
+        "msg_size": "397",
+        "rcpt_tags": [],
+        "timestamp": "1410270080",
+        "conn_name": "00/00-00000-00000000"
+      }
+    }
+  }
+]

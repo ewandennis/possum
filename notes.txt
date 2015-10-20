@@ -1,0 +1,18 @@
+*ui: creds: gather creds
+ui: endpoints: show endpoints for cred
+storage: store/retrieve credentials
+storage: associate endpoints with user credentials
+ui: events page: wire up buttons to event filters
+ui: endpoints: auto-update endpoint counters when events received
+app: stub out event saving and convert into pure event router
+	storage: remove saves
+
+TODOs
+
+all: formalise http, rest and presentation layer error reporting
+
+ui: refactor client side JS into per-page files
+ui: factor server calls out into a server interface
+app: create 'controller' interface for eventserver as facade for storage (if required)
+
+*ui: endpoints: only validate on click, not on every keypress

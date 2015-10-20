@@ -1,0 +1,20 @@
+[
+		{
+			id: 1,
+			name: 'My first endpoint',
+			evtcount: 16,
+			url: 'http://hostname:port/endpoints/1'
+		},
+		{
+			id: 2,
+			name: 'endpoints and unicorns',
+			evtcount: 259,
+			url: 'http://hostname:port/endpoints/2'
+		},
+		{
+			id: 3,
+			name: 'The final endpoint',
+			evtcount: 0,
+			url: 'http://hostname:port/endpoints/3'
+		}
+]
