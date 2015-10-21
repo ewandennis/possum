@@ -4,13 +4,14 @@
 		h3 Your Webhook Endpoints
 	div(data-role='content')
 		p
-			| This tool collects and displays recent events sent by webhook services such as SparkPost.
+			| This tool collects and displays recent events sent by SparkPost's webhook service.
 			| You can register new HTTP endpoints to receive events from your services and you can
 			| view collected events by selecting an endpoint.
 		div(data-role='main').ui-content
 			form#newendpointfrm
-				label(for='endpointnamefld')
-				input#endpointnamefld(type='text', required, minlength=4)
+				label(for='endpointnamefld') Enter an endpoint name:
+				input#endpointnamefld(type='text', required, minlength=3)
 				input#createendpointbtn(type='submit', data-inline='true', value='Create endpoint')
 			div
+				h4 Existing Endpoints
 				ul#endpointlst(data-role='listview')

@@ -6,6 +6,10 @@ label {
 	font-weight: bold;
 }
 
+#endpointlst, #eventlst {
+	margin-top: 0px;
+}
+
 .error {
 	color: #F00;
 }
