@@ -86,4 +86,4 @@ app.post('/endpoints/:endpoint', function(req, res) {
 	});
 });
 
-srv.listen(3000);
+srv.listen(process.env.PORT || 3000);
