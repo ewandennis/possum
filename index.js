@@ -87,7 +87,7 @@ app.post('/endpoints/:endpoint', function(req, res) {
 });
 
 srv.listen(process.env.PORT || 3000, function() {
-	console.log("Listening");
+	console.log("Listening on port " + srv.address().port);
 });
 
 process.on('uncaughtException', function(err) {
