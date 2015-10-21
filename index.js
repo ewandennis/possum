@@ -19,7 +19,7 @@ app.use('/css', express.static(__dirname + '/static/css'));
 app.use('/bower_components', express.static(__dirname + '/bower_components/'));
 app.use('/js', express.static(__dirname + '/static/js'));
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 
 // UI route
 
