@@ -29,6 +29,8 @@ for evttype in eventtypes:
   jsonfile.write(json.dumps(event))
   jsonfile.close()
 
+events.append(json.loads(open("ping.json", "r").read()))
+
 allevents = open("allevents.json", "w")
 allevents.write('[')
 allevents.write(','.join([json.dumps(evt, indent=2, separators=(',',': ')) for evt in events]))

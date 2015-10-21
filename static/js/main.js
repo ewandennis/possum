@@ -211,6 +211,7 @@ function onShowEvents() {
     socket = io($(location).attr('host'));
 
     socket.on('events', function (events) {
+      console.log(JSON.stringify(events));
       populateEventsList(events);
     });
   }
@@ -238,20 +239,27 @@ function populateEventsList(events) {
       return evt.msys[Object.keys(evt.msys)[0]];
     })
     , goodEvents = unpackedEvents.filter(function(evt) {
-      return allEventTypes.indexOf(evt.type) >= 0;
+      return evt === undefined || allEventTypes.indexOf(evt.type) >= 0;
     });
 
 	goodEvents.forEach(function(evt) {
-		evt.timestamp = moment.unix(evt.timestamp).fromNow();
+    var li;
 
-    if (eventformatters.hasOwnProperty(evt.type)) {
-  		var li = $('<li><span class="ui-li-desc"><span class="evttype">' + evt.type + ' </span><span class="eventdesc">' +
-  			eventformatters[evt.type](evt) + '</span></span><span class="ui-li-count">' + evt.timestamp + '</span></li>');
+    if (evt !== undefined) {
+  		evt.timestamp = moment.unix(evt.timestamp).fromNow();
 
+      if (eventformatters.hasOwnProperty(evt.type)) {
+    		li = $('<li><span class="ui-li-desc"><span class="evttype">' + evt.type + ' </span><span class="eventdesc">' +
+    			eventformatters[evt.type](evt) + '</span></span><span class="ui-li-count">' + evt.timestamp + '</span></li>');
+      }
       li.data('eventtype', evt.type);
-
-  		evlst.prepend(li);
+    } else {
+      // webhook pings are empty events which show up as undefined entries here
+      li = $('<li><span class="ui-li-desc"><span class="ping">Webhook endpoint ping</span></span></li>');
+      li.data('eventtype', 'ping');
     }
+
+		evlst.prepend(li);
 	});
 
 	evlst.listview('refresh');
