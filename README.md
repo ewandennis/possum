@@ -1,9 +1,8 @@
 # A Simple SparkPost Webhook Consumer
 
-This service presents a set of SparkPost Webhook endpoints and a web UI to display events as they are received.
+Possum presents a set of SparkPost Webhook endpoints and a web UI to display events as they are received.
 
-### Setup
-
+### Setup: Node.JS
 ```
 git clone https://github.com/ewandennis/possum possum
 cd possum
@@ -12,7 +11,20 @@ npm install
 npm run dev
 ```
 
-You now have a webhook event viewer service listening on port 3000. To begin using it:
+You now have a Possum webhook event viewer service listening on port 3000.
+
+### Setup: Heroku
+```
+git clone https://github.com/ewandennis/possum possum
+heroku create
+git push heroku master
+heroku ps:scale web=1
+```
+
+You now have a Possum webhook event viewer service running on Heroku.
+
+### Usage
+To begin using your Possum instance:
 
 * Visit the service web interface at http://localhost:3000/ 
 * Add a new webhook endpoint by typing its name and clicking 'create endpoint'.
